@@ -18,7 +18,7 @@ const CartItem: React.FC<CartItemProps> = ({ item, onUpdateQuantity, onRemoveIte
   const subtotal = (book.price * quantity).toFixed(2);
 
   return (
-    <div className="flex items-center justify-between p-4 border-b border-gray-200">
+    <div className="flex items-center justify-between p-4 border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
       <div className="flex items-center space-x-4">
         <div className="relative h-24 w-16 bg-gray-200 flex items-center justify-center rounded-md">
           {/* Book Icon Placeholder */}
@@ -37,14 +37,14 @@ const CartItem: React.FC<CartItemProps> = ({ item, onUpdateQuantity, onRemoveIte
           <button 
             onClick={() => onUpdateQuantity(book.id, quantity - 1)}
             disabled={quantity <= 1}
-            className="px-2 py-1 border rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            className="px-3 py-1 border rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors duration-200"
           >
             -
           </button>
           <span>{quantity}</span>
           <button 
             onClick={() => onUpdateQuantity(book.id, quantity + 1)}
-            className="px-2 py-1 border rounded-md hover:bg-gray-100 cursor-pointer"
+            className="px-3 py-1 border rounded-md hover:bg-gray-100 cursor-pointer transition-colors duration-200"
           >
             +
           </button>
@@ -52,7 +52,7 @@ const CartItem: React.FC<CartItemProps> = ({ item, onUpdateQuantity, onRemoveIte
         <p className="text-md font-semibold w-20 text-right">${subtotal}</p>
         <button 
           onClick={() => onRemoveItem(book.id)}
-          className="text-red-500 hover:text-red-700 font-semibold cursor-pointer"
+          className="text-red-500 hover:text-red-700 font-semibold cursor-pointer transition-colors duration-200"
         >
           Remove
         </button>
