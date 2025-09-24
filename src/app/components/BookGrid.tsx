@@ -17,8 +17,10 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [sortBy, setSortBy] = useState('title');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
+
   const [featuredCarouselIndex, setFeaturedCarouselIndex] = useState(0);
 
   // Memoize featured books to prevent re-calculation on every render
@@ -53,6 +55,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
   };
 
   // Get all unique genres for the filter dropdown
+
   const genres = useMemo(() => {
     const allGenres = books.flatMap(book => book.genre);
     return ['All', ...new Set(allGenres)];
@@ -106,6 +109,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
   }, [books, searchQuery, selectedGenre, sortBy, sortOrder]);
 
   // Paginate the filtered and sorted books
+
   const paginatedBooks = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -296,6 +300,7 @@ const BookGrid: React.FC<BookGridProps> = ({ books, onAddToCart }) => {
               onPageChange={handlePageChange}
               itemsPerPage={itemsPerPage}
               totalItems={filteredAndSortedBooks.length}
+              onItemsPerPageChange={handleItemsPerPageChange}
             />
           </>
         ) : (
